@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'simple-proxy',
+      name: 'proxy',
       script: './.output/server/index.mjs',
       instances: 'max',
       exec_mode: 'cluster',
