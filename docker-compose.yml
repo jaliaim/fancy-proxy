@@ -1,22 +1,17 @@
 version: '3.8'
 
 services:
-  simple-proxy:
-    build: .
+  proxy-app:
+    build: ./proxy
+    container_name: proxy_app
     restart: always
     expose:
-      - "3000"
+      - "3000"          # internal port only
     environment:
       - DISABLE_CACHE=true
+    networks:
+      - lordflix_net
 
-  nginx:
-    image: nginx:alpine
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./certs:/etc/nginx/certs:ro
-    depends_on:
-      - simple-proxy
+networks:
+  lordflix_net:
+    external: true
